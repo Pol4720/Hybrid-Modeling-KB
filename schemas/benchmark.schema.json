@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Pol4720/Hybrid-Modeling-KB/schemas/benchmark.schema.json",
+  "title": "Frontmatter de fichas tipo 'benchmark'",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "benchmark"
+    },
+    "level": {
+      "enum": [
+        "formalism",
+        "domain",
+        "composition",
+        "processing"
+      ]
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(FRM|PRC|CMP|DPK|MOD)-"
+      },
+      "minItems": 1
+    },
+    "reference": {
+      "type": "string"
+    },
+    "metric": {
+      "type": "string"
+    },
+    "tolerance": {
+      "type": "string"
+    },
+    "refs": {
+      "minItems": 1
+    }
+  },
+  "required": [
+    "level",
+    "targets",
+    "reference",
+    "metric",
+    "refs"
+  ]
+}

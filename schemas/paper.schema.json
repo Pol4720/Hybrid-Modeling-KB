@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Pol4720/Hybrid-Modeling-KB/schemas/paper.schema.json",
+  "title": "Frontmatter de fichas tipo 'paper'",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "paper"
+    },
+    "bibkey": {
+      "type": "string"
+    },
+    "verification": {
+      "enum": [
+        "VERIFIED",
+        "UNVERIFIED"
+      ]
+    },
+    "access": {
+      "enum": [
+        "OA",
+        "OA-LINK",
+        "PAYWALLED",
+        "WEB"
+      ]
+    },
+    "processing": {
+      "enum": [
+        "fulltext-assisted",
+        "metadata-and-own-summary"
+      ]
+    },
+    "license": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "bibkey",
+    "verification",
+    "access"
+  ]
+}
