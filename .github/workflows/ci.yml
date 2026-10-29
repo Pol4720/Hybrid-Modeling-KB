@@ -1,0 +1,56 @@
+name: KB CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 6 * * 1"   # lunes: re-verificación online de DOIs/arXiv
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Validación offline (esquemas, enlaces, duplicados, huérfanos, índices)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements.txt
+      - run: pip install -r scripts/requirements.txt
+      - run: python scripts/kb.py check
+
+  lfs-pointers:
+    name: PDFs versionados como punteros LFS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Comprobar que bibliography/pdfs/*.pdf son punteros LFS
+        run: |
+          bad=0
+          for f in bibliography/pdfs/*.pdf; do
+            [ -e "$f" ] || continue
+            head -c 40 "$f" | grep -q "version https://git-lfs.github.com/spec/v1" || { echo "No es puntero LFS: $f"; bad=1; }
+          done
+          exit $bad
+
+  dois-online:
+    name: Re-verificación online de identificadores
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scripts/requirements.txt
+      - run: python scripts/kb.py dois --online
