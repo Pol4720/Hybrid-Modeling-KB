@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Pol4720/Hybrid-Modeling-KB/schemas/processing.schema.json",
+  "title": "Frontmatter de fichas tipo 'processing'",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "processing"
+    },
+    "category": {
+      "enum": [
+        "qualitative",
+        "sensitivity",
+        "identifiability",
+        "uq",
+        "inference",
+        "reduction",
+        "verification",
+        "design",
+        "control",
+        "symbolic",
+        "differentiation",
+        "codegen",
+        "equivalence",
+        "interchange",
+        "reproducibility"
+      ]
+    },
+    "applies_to": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^FRM-"
+      },
+      "minItems": 1
+    },
+    "refs": {
+      "minItems": 2
+    }
+  },
+  "required": [
+    "category",
+    "applies_to",
+    "baseline_support",
+    "target_level",
+    "refs"
+  ]
+}

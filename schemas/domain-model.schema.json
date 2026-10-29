@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Pol4720/Hybrid-Modeling-KB/schemas/domain-model.schema.json",
+  "title": "Frontmatter de fichas tipo 'domain-model'",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "domain-model"
+    },
+    "domain": {
+      "type": "string",
+      "pattern": "^DPK-"
+    },
+    "formalisms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^FRM-"
+      },
+      "minItems": 1
+    },
+    "refs": {
+      "minItems": 1
+    }
+  },
+  "required": [
+    "domain",
+    "formalisms",
+    "refs"
+  ]
+}

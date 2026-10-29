@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Pol4720/Hybrid-Modeling-KB/schemas/composition.schema.json",
+  "title": "Frontmatter de fichas tipo 'composition'",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "composition"
+    },
+    "formalisms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^FRM-"
+      },
+      "minItems": 2
+    },
+    "coupling": {
+      "enum": [
+        "parameter-passing",
+        "shared-variable",
+        "flux-exchange",
+        "event",
+        "co-simulation",
+        "multiscale",
+        "monolithic",
+        "categorical"
+      ]
+    },
+    "refs": {
+      "minItems": 1
+    }
+  },
+  "required": [
+    "formalisms",
+    "coupling",
+    "refs"
+  ]
+}

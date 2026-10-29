@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Pol4720/Hybrid-Modeling-KB/schemas/formalism.schema.json",
+  "title": "Frontmatter de fichas tipo 'formalism'",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "formalism"
+    },
+    "category": {
+      "enum": [
+        "continuous",
+        "discrete-stochastic",
+        "automata-networks",
+        "agents-rules",
+        "control-optimization",
+        "data-driven",
+        "hybrid-multiscale",
+        "composition-theory"
+      ]
+    },
+    "time": {
+      "enum": [
+        "continuous",
+        "discrete",
+        "event",
+        "hybrid",
+        "none"
+      ]
+    },
+    "state": {
+      "enum": [
+        "continuous",
+        "discrete",
+        "mixed",
+        "function-space"
+      ]
+    },
+    "determinism": {
+      "enum": [
+        "deterministic",
+        "stochastic",
+        "both"
+      ]
+    },
+    "refs": {
+      "minItems": 2
+    }
+  },
+  "required": [
+    "category",
+    "time",
+    "state",
+    "determinism",
+    "baseline_support",
+    "target_level",
+    "refs"
+  ]
+}

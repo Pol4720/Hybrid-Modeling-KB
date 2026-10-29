@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Pol4720/Hybrid-Modeling-KB/schemas/domain-pack.schema.json",
+  "title": "Frontmatter de fichas tipo 'domain-pack'",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "domain-pack"
+    },
+    "refs": {
+      "minItems": 2
+    }
+  },
+  "required": [
+    "target_level",
+    "baseline_support",
+    "refs"
+  ]
+}

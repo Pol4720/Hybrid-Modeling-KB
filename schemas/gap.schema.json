@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Pol4720/Hybrid-Modeling-KB/schemas/gap.schema.json",
+  "title": "Frontmatter de fichas tipo 'gap'",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "gap"
+    },
+    "severity": {
+      "enum": [
+        "blocker",
+        "major",
+        "minor"
+      ]
+    },
+    "value": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "effort": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "risk": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "priority": {
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3"
+      ]
+    },
+    "related": {
+      "minItems": 1
+    }
+  },
+  "required": [
+    "severity",
+    "value",
+    "effort",
+    "risk",
+    "priority",
+    "related"
+  ]
+}

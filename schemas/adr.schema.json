@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Pol4720/Hybrid-Modeling-KB/schemas/adr.schema.json",
+  "title": "Frontmatter de fichas tipo 'adr'",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "adr"
+    },
+    "adr_status": {
+      "enum": [
+        "proposed",
+        "accepted",
+        "superseded",
+        "rejected"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "deciders": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    }
+  },
+  "required": [
+    "adr_status",
+    "date",
+    "deciders"
+  ]
+}
