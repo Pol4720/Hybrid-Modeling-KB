@@ -1,0 +1,27 @@
+name: Tarea de conocimiento
+description: Nueva ficha, síntesis o revisión (formalismo, procesamiento, composición, dominio)
+labels: ["triage"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Tipo
+      options: [formalism, processing, composition, domain-pack, platform, algorithm, library, benchmark, bibliography]
+    validations:
+      required: true
+  - type: input
+    id: ids
+    attributes:
+      label: IDs afectados
+      placeholder: "FRM-DAE, PRC-IDENT"
+  - type: textarea
+    id: scope
+    attributes:
+      label: Alcance y criterio de terminado
+      description: Qué debe contener la ficha (definición formal, algoritmos, software, benchmarks, referencias verificadas).
+    validations:
+      required: true
+  - type: textarea
+    id: refs
+    attributes:
+      label: Referencias candidatas (DOI/arXiv/ISBN)

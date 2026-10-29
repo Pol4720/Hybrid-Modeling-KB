@@ -1,0 +1,21 @@
+name: Decisión necesaria
+description: Pregunta de arquitectura o alcance que requiere decisión del propietario (genera un ADR)
+labels: ["decision-needed"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Opciones consideradas (con pros/contras)
+    validations:
+      required: true
+  - type: input
+    id: adr
+    attributes:
+      label: ADR relacionado
+      placeholder: "ADR-0003"

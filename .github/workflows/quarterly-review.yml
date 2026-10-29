@@ -1,0 +1,33 @@
+name: Revisión trimestral del estado del arte
+
+on:
+  schedule:
+    - cron: "0 9 1 1,4,7,10 *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const d = new Date().toISOString().slice(0, 10);
+            const body = [
+              "Revisión trimestral programada (ver AGENTS.md §5).",
+              "",
+              "- [ ] Revisar versiones nuevas de las plataformas de `knowledge/cards/platforms/` y actualizar `last_checked`.",
+              "- [ ] Ejecutar `python scripts/kb.py dois --online` y corregir discrepancias.",
+              "- [ ] Buscar trabajos nuevos por formalismo/procesamiento prioritario y añadirlos con `kb.py add-paper`.",
+              "- [ ] Revisar ADRs con `adr_status: proposed`.",
+              "- [ ] Revisar brechas `GAP-*` P0/P1 frente al estado de la plataforma.",
+              "- [ ] Regenerar índices (`kb.py index`) y actualizar CHANGELOG.",
+            ].join("\n");
+            await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo,
+              title: `Revisión trimestral del estado del arte — ${d}`,
+              body, labels: ["maintenance", "bibliography"],
+            });
